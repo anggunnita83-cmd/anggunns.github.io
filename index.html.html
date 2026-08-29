@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buku Pendampingan Guru Wali - Karya Anggun Nita Sianturi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #fcfbf7; color: #1e293b; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .tab-btn.active { background-color: #1e293b; color: #ffffff; border-bottom: 3px solid #f59e0b; }
+        .tab-btn { background-color: #e2e8f0; color: #475569; }
+        .card-bg { background-color: #ffffff; border: 1px solid #e2e8f0; }
+        .stat-box { background-color: #fefce8; border: 1px solid #fef08a; }
+        @media print {
+            .no-print { display: none !important; }
+            body { background-color: #ffffff !important; }
+            .card-bg { border: none !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- HEADER UTAMA DENGAN NAMA ANGGUN NITA SIANTURI -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b pb-4">
+            <div>
+                <div class="flex items-center gap-2">
+                    <h1 class="text-2xl md:text-3xl font-bold text-slate-900">Buku Pendampingan Guru Wali</h1>
+                    <span class="bg-blue-900 text-amber-400 text-xs px-2.5 py-1 rounded-full font-bold">Karya Digital</span>
+                </div>
+                <p class="text-sm text-slate-600 font-medium mt-1">
+                    Aplikasi Pendampingan Murid — Dikembangkan & Diciptakan oleh: <span class="font-bold text-blue-900 underline">Anggun Nita Sianturi</span>
+                </p>
+            </div>
+            <div id="statusBadge" class="no-print mt-2 md:mt-0 px-3 py-1 bg-amber-100 text-amber-800 border border-amber-300 rounded-full text-xs font-semibold flex items-center gap-1">
+                <span>🔄</span> tersimpan di perangkat
+            </div>
+        </div>
+
+        <!-- FORM HEADER IDENTITAS SEKOLAH -->
+        <div class="card-bg p-4 rounded-xl mb-6 shadow-sm grid grid-cols-2 md:grid-cols-6 gap-3 text-xs">
+            <div>
+                <label class="block font-bold text-slate-700 mb-1">NAMA SEKOLAH</label>
+                <input type="text" id="h_sekolah" class="w-full p-2 border rounded bg-slate-50" placeholder="SMP N 1 Tanah Jawa">
+            </div>
+            <div>
+                <label class="block font-bold text-slate-700 mb-1">NAMA GURU WALI</label>
+                <input type="text" id="h_guruWali" class="w-full p-2 border rounded bg-slate-50" value="Anggun Nita Sianturi">
+            </div>
+            <div>
+                <label class="block font-bold text-slate-700 mb-1">GURU BIDANG STUDI</label>
+                <input type="text" id="h_mapel" class="w-full p-2 border rounded bg-slate-50" placeholder="BK">
+            </div>
+            <div>
+                <label class="block font-bold text-slate-700 mb-1">KELAS / MURID DAMPINGAN</label>
+                <input type="text" id="h_kelas" class="w-full p-2 border rounded bg-slate-50" placeholder="cth. VII, VIII, IX">
+            </div>
+            <div>
+                <label class="block font-bold text-slate-700 mb-1">TAHUN AJARAN</label>
+                <input type="text" id="h_tahun" class="w-full p-2 border rounded bg-slate-50" placeholder="cth. 2026/2027">
+            </div>
+            <div>
+                <label class="block font-bold text-slate-700 mb-1">SEMESTER</label>
+                <select id="h_semester" class="w-full p-2 border rounded bg-slate-50">
+                    <option>Ganjil</option>
+                    <option selected>Genap</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- TAB NAVIGASI -->
+        <div class="no-print flex flex-wrap gap-2 mb-6">
+            <button onclick="openTab('tab1')" id="btn-tab1" class="tab-btn active px-4 py-2.5 rounded-t-lg font-bold text-sm">01 Identitas Murid</button>
+            <button onclick="openTab('tab2')" id="btn-tab2" class="tab-btn px-4 py-2.5 rounded-t-lg font-bold text-sm">02 Perkembangan Bulanan</button>
+            <button onclick="openTab('tab3')" id="btn-tab3" class="tab-btn px-4 py-2.5 rounded-t-lg font-bold text-sm">03 Rekap Pendampingan</button>
+            <button onclick="openTab('tab4')" id="btn-tab4" class="tab-btn px-4 py-2.5 rounded-t-lg font-bold text-sm">04 Laporan Semester</button>
+        </div>
+
+        <!-- TAB 01: IDENTITAS MURID -->
+        <div id="tab1" class="tab-content card-bg p-6 rounded-b-xl shadow-sm">
+            <div class="mb-4">
+                <h2 class="text-xl font-bold text-slate-900">Identitas murid dampingan</h2>
+                <p class="text-xs text-slate-500">Diisi satu kali di awal tahun ajaran untuk seluruh murid yang didampingi.</p>
+            </div>
+            <div class="overflow-x-auto mb-4">
+                <table class="w-full text-xs text-left border-collapse border border-slate-200">
+                    <thead class="bg-slate-900 text-white">
+                        <tr>
+                            <th class="p-2 border text-center w-8">NO</th>
+                            <th class="p-2 border">NAMA MURID</th>
+                            <th class="p-2 border w-24">NIS/NISN</th>
+                            <th class="p-2 border w-16">KELAS</th>
+                            <th class="p-2 border w-12 text-center">L/P</th>
+                            <th class="p-2 border">GAYA BELAJAR</th>
+                            <th class="p-2 border">KECEPATAN BELAJAR</th>
+                            <th class="p-2 border">MINAT & CITA-CITA</th>
+                            <th class="p-2 border">PARTISIPASI KEGIATAN</th>
+                            <th class="p-2 border">KONTAK ORTU</th>
+                            <th class="p-2 border text-center no-print w-12">AKSI</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tb-murid"></tbody>
+                </table>
+            </div>
+            <div class="flex justify-between items-center text-xs">
+                <button onclick="tambahBarisMurid()" class="no-print border border-slate-400 bg-white hover:bg-slate-50 px-4 py-2 rounded font-semibold text-slate-700">+ Tambah murid</button>
+                <span id="counterMurid" class="font-bold text-slate-600">0 murid terdaftar</span>
+            </div>
+        </div>
+
+        <!-- TAB 02: PERKEMBANGAN BULANAN -->
+        <div id="tab2" class="tab-content hidden card-bg p-6 rounded-b-xl shadow-sm">
+            <div class="mb-4">
+                <h2 class="text-xl font-bold text-slate-900">Catatan perkembangan murid (bulanan)</h2>
+                <p class="text-xs text-slate-500">Pilih murid dan bulan, isi kehadiran, lima aspek pemantauan, Profil Lulusan 8 Dimensi, serta 7 Kebiasaan, lalu simpan.</p>
+            </div>
+            <div class="bg-slate-50 p-4 border rounded-lg mb-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div>
+                    <label class="block font-bold mb-1">NAMA MURID</label>
+                    <select id="pilihMuridBulanan" class="w-full p-2 border rounded bg-white"><option value="">Pilih murid...</option></select>
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">BULAN / PERIODE</label>
+                    <input type="month" id="bulanPeriode" class="w-full p-2 border rounded bg-white">
+                </div>
+            </div>
+            <button onclick="simpanCatatanBulanan()" class="border border-amber-500 bg-amber-50 text-amber-900 font-bold px-4 py-2 rounded text-xs">Simpan Catatan Bulanan</button>
+        </div>
+
+        <!-- TAB 03: REKAP PENDAMPINGAN -->
+        <div id="tab3" class="tab-content hidden card-bg p-6 rounded-b-xl shadow-sm">
+            <div class="mb-4">
+                <h2 class="text-xl font-bold text-slate-900">Rekap pertemuan / pendampingan dengan murid</h2>
+                <p class="text-xs text-slate-500">Catat setiap sesi pendampingan, individu maupun kelompok.</p>
+            </div>
+            <div class="overflow-x-auto mb-6">
+                <table class="w-full text-xs text-left border-collapse border border-slate-200">
+                    <thead class="bg-slate-900 text-white">
+                        <tr>
+                            <th class="p-2 border text-center w-8">NO</th>
+                            <th class="p-2 border w-32">TANGGAL</th>
+                            <th class="p-2 border">NAMA MURID</th>
+                            <th class="p-2 border w-28">FORMAT</th>
+                            <th class="p-2 border">TOPIK / MASALAH DIBAHAS</th>
+                            <th class="p-2 border">TINDAK LANJUT</th>
+                            <th class="p-2 border">KETERANGAN</th>
+                            <th class="p-2 border text-center no-print w-10">AKSI</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tb-pendampingan"></tbody>
+                </table>
+                <div class="mt-2 text-xs">
+                    <button onclick="tambahBarisPertemuan()" class="no-print border border-slate-400 bg-white hover:bg-slate-50 px-4 py-2 rounded font-semibold text-slate-700">+ Tambah pertemuan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 04: LAPORAN SEMESTER -->
+        <div id="tab4" class="tab-content hidden card-bg p-6 rounded-b-xl shadow-sm">
+            <div class="mb-6">
+                <h2 class="text-xl font-bold text-slate-900">Laporan pertanggungjawaban pendampingan (semester)</h2>
+                <p class="text-xs text-slate-500 italic">Rekap otomatis dari data pendampingan, dilengkapi catatan naratif.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-xs">
+                <div class="stat-box p-4 rounded-md">
+                    <p class="text-slate-500 uppercase font-semibold text-[11px] tracking-wider">TOTAL MURID DAMPINGAN</p>
+                    <p class="text-3xl font-bold text-slate-800 mt-2" id="st_totalMurid">0</p>
+                </div>
+                <div class="stat-box p-4 rounded-md">
+                    <p class="text-slate-500 uppercase font-semibold text-[11px] tracking-wider">TOTAL SESI PENDAMPINGAN</p>
+                    <p class="text-3xl font-bold text-slate-800 mt-2" id="st_totalSesi">0</p>
+                </div>
+                <div class="stat-box p-4 rounded-md">
+                    <p class="text-slate-500 uppercase font-semibold text-[11px] tracking-wider">SESI KLASIKAL</p>
+                    <p class="text-3xl font-bold text-slate-800 mt-2" id="st_sesiKlasikal">0</p>
+                </div>
+                <div class="stat-box p-4 rounded-md">
+                    <p class="text-slate-500 uppercase font-semibold text-[11px] tracking-wider">SESI INDIVIDU</p>
+                    <p class="text-3xl font-bold text-slate-800 mt-2" id="st_sesiIndividu">0</p>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="font-bold text-sm text-slate-900 mb-3">A. Rekapitulasi per bulan</h3>
+                <div class="overflow-x-auto mb-3">
+                    <table class="w-full text-xs text-left border-collapse border border-slate-300">
+                        <thead class="bg-slate-900 text-amber-400 font-bold">
+                            <tr>
+                                <th class="p-2.5 border border-slate-700">BULAN</th>
+                                <th class="p-2.5 border border-slate-700">PENDAMPINGAN KLASIKAL</th>
+                                <th class="p-2.5 border border-slate-700">PENDAMPINGAN INDIVIDU</th>
+                                <th class="p-2.5 border border-slate-700">% KEHADIRAN MURID</th>
+                                <th class="p-2.5 border border-slate-700">CATATAN PENTING</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tb-rekapBulan">
+                            <tr>
+                                <td colspan="5" class="p-4 text-center text-slate-500 italic bg-white border border-slate-200">
+                                    Belum ada data bulan. Tambahkan pertemuan di tab Rekap Pendampingan.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <button onclick="simpanLaporanSemester()" class="no-print border border-amber-500 bg-amber-50 hover:bg-amber-100 text-amber-900 font-semibold px-4 py-2 rounded text-xs shadow-sm">Simpan catatan</button>
+        </div>
+
+        <!-- FOOTER ACTIONS & HAK CIPTA KARYA -->
+        <div class="no-print flex flex-col md:flex-row justify-between items-center gap-4 mt-6 pt-4 border-t text-xs">
+            <span class="text-slate-600 font-medium">
+                © Smart Learning Lapguruwali — Diciptakan & Didesain oleh <strong class="text-slate-900">Anggun Nita Sianturi</strong>.
+            </span>
+            <div class="flex gap-2">
+                <button onclick="window.print()" class="border border-slate-400 bg-white hover:bg-slate-50 px-4 py-2 rounded font-semibold text-slate-800">Cetak tab ini</button>
+                <button onclick="hapusSemuaData()" class="border border-red-300 bg-white hover:bg-red-50 px-4 py-2 rounded font-semibold text-red-700">Hapus semua data</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let appData = { muridList: [], catatanBulanan: [], rekapPendampingan: [] };
+
+        window.onload = function() {
+            loadLocalData();
+            renderMuridTable();
+            renderPertemuanTable();
+        };
+
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
+        function tambahBarisMurid() {
+            appData.muridList.push({ nama: "", nis: "", kelas: "", gender: "L", gayaBelajar: "Visual", kecepatanBelajar: "Sedang", minatCita: "", partisipasi: "Ekstrakurikuler", kontak: "" });
+            renderMuridTable();
+            saveLocalData();
+        }
+
+        function renderMuridTable() {
+            const tb = document.getElementById("tb-murid");
+            tb.innerHTML = "";
+            appData.muridList.forEach((m, idx) => {
+                tb.innerHTML += `
+                    <tr>
+                        <td class="p-1 border text-center font-bold">${idx + 1}</td>
+                        <td class="p-1 border"><input type="text" value="${m.nama}" onchange="updateMuridData(${idx}, 'nama', this.value)" class="w-full p-1 border rounded"></td>
+                        <td class="p-1 border"><input type="text" value="${m.nis}" onchange="updateMuridData(${idx}, 'nis', this.value)" class="w-full p-1 border rounded"></td>
+                        <td class="p-1 border"><input type="text" value="${m.kelas}" onchange="updateMuridData(${idx}, 'kelas', this.value)" class="w-full p-1 border rounded"></td>
+                        <td class="p-1 border"><select onchange="updateMuridData(${idx}, 'gender', this.value)" class="w-full p-1 border rounded"><option value="L" ${m.gender==='L'?'selected':''}>L</option><option value="P" ${m.gender==='P'?'selected':''}>P</option></select></td>
+                        <td class="p-1 border"><select onchange="updateMuridData(${idx}, 'gayaBelajar', this.value)" class="w-full p-1 border rounded"><option ${m.gayaBelajar==='Visual'?'selected':''}>Visual</option><option ${m.gayaBelajar==='Auditori'?'selected':''}>Auditori</option><option ${m.gayaBelajar==='Kinestetik'?'selected':''}>Kinestetik</option><option ${m.gayaBelajar==='Kombinasi'?'selected':''}>Kombinasi</option></select></td>
+                        <td class="p-1 border"><select onchange="updateMuridData(${idx}, 'kecepatanBelajar', this.value)" class="w-full p-1 border rounded"><option ${m.kecepatanBelajar==='Cepat'?'selected':''}>Cepat</option><option ${m.kecepatanBelajar==='Sedang'?'selected':''}>Sedang</option><option ${m.kecepatanBelajar==='Lambat'?'selected':''}>Lambat</option></select></td>
+                        <td class="p-1 border"><input type="text" value="${m.minatCita}" onchange="updateMuridData(${idx}, 'minatCita', this.value)" class="w-full p-1 border rounded"></td>
+                        <td class="p-1 border"><input type="text" value="${m.partisipasi}" onchange="updateMuridData(${idx}, 'partisipasi', this.value)" class="w-full p-1 border rounded"></td>
+                        <td class="p-1 border"><input type="text" value="${m.kontak}" onchange="updateMuridData(${idx}, 'kontak', this.value)" class="w-full p-1 border rounded"></td>
+                        <td class="p-1 border text-center no-print"><button onclick="hapusMurid(${idx})" class="text-red-600 font-bold">×</button></td>
+                    </tr>
+                `;
+            });
+            document.getElementById("counterMurid").innerText = appData.muridList.length + " murid terdaftar";
+            document.getElementById("st_totalMurid").innerText = appData.muridList.length;
+        }
+
+        function updateMuridData(idx, field, val) { appData.muridList[idx][field] = val; saveLocalData(); }
+        function hapusMurid(idx) { appData.muridList.splice(idx, 1); renderMuridTable(); saveLocalData(); }
+
+        function tambahBarisPertemuan() {
+            appData.rekapPendampingan.push({ tanggal: "", murid: "", format: "Individu", topik: "", tindaklanjut: "", keterangan: "" });
+            renderPertemuanTable();
+            saveLocalData();
+        }
+
+        function renderPertemuanTable() {
+            const tb = document.getElementById("tb-pendampingan");
+            tb.innerHTML = "";
+            appData.rekapPendampingan.forEach((p, idx) => {
+                let optionsMurid = `<option value="">Pilih murid...</option>`;
+                appData.muridList.forEach(m => { if(m.nama) optionsMurid += `<option value="${m.nama}" ${p.murid===m.nama?'selected':''}>${m.nama}</option>`; });
+
+                tb.innerHTML += `
+                    <tr>
+                        <td class="p-1 border text-center font-bold">${idx + 1}</td>
+                        <td class="p-1 border"><input type="date" value="${p.tanggal}" onchange="updatePertemuanData(${idx}, 'tanggal', this.value)" class="w-full p-1 border rounded"></td>
+                        <td class="p-1 border"><select onchange="updatePertemuanData(${idx}, 'murid', this.value)" class="w-full p-1 border rounded">${optionsMurid}</select></td>
+                        <td class="p-1 border"><select onchange="updatePertemuanData(${idx}, 'format', this.value)" class="w-full p-1 border rounded"><option ${p.format==='Individu'?'selected':''}>Individu</option><option ${p.format==='Klasikal'?'selected':''}>Klasikal</option></select></td>
+                        <td class="p-1 border"><input type="text" value="${p.topik}" onchange="updatePertemuanData(${idx}, 'topik', this.value)" class="w-full p-1 border rounded"></td>
+                        <td class="p-1 border"><input type="text" value="${p.tindaklanjut}" onchange="updatePertemuanData(${idx}, 'tindaklanjut', this.value)" class="w-full p-1 border rounded"></td>
+                        <td class="p-1 border"><input type="text" value="${p.keterangan}" onchange="updatePertemuanData(${idx}, 'keterangan', this.value)" class="w-full p-1 border rounded"></td>
+                        <td class="p-1 border text-center no-print"><button onclick="hapusPertemuan(${idx})" class="text-red-600 font-bold">×</button></td>
+                    </tr>
+                `;
+            });
+            document.getElementById("st_totalSesi").innerText = appData.rekapPendampingan.length;
+        }
+
+        function updatePertemuanData(idx, field, val) { appData.rekapPendampingan[idx][field] = val; saveLocalData(); }
+        function hapusPertemuan(idx) { appData.rekapPendampingan.splice(idx, 1); renderPertemuanTable(); saveLocalData(); }
+
+        function simpanCatatanBulanan() { saveLocalData(); alert("Catatan bulanan tersimpan!"); }
+        function simpanLaporanSemester() { saveLocalData(); alert("Catatan Laporan Semester berhasil disimpan!"); }
+        function saveLocalData() { localStorage.setItem('RLI_Pendampingan_Data', JSON.stringify(appData)); }
+        function loadLocalData() { const saved = localStorage.getItem('RLI_Pendampingan_Data'); if(saved) appData = JSON.parse(saved); }
+        function hapusSemuaData() { if(confirm("Hapus seluruh data?")) { localStorage.removeItem('RLI_Pendampingan_Data'); location.reload(); } }
+    </script>
+</body>
+</html>
